@@ -1,0 +1,338 @@
+.bottom-nav {
+    position: fixed;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 75px;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+    border-top: 1px solid #333;
+    justify-content: space-around;
+    display: flex;
+    column-gap: 20px;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding-top: 10px;
+    column-gap: 15px;
+    margin-right: -20px;
+}
+
+.nav-item svg {
+    font-size: 18px;
+    position: relative;
+    top: -2px;
+    transition: transform 0.3s ease;
+}
+
+.nav-item:hover {
+    transform: scale(1.05);
+    color: #E20000;
+}
+
+.nav-item:hover svg {
+    transform: scale(1.2);
+    color: #E20000;
+}
+
+.nav-item.active {
+    color: #E20000;
+}
+
+.nav-item.active svg {
+    color: #E20000;
+}
+
+/* Выпадающее меню */
+.dropdown-menu {
+    position: fixed;
+    bottom: 70px;
+    right: 10px;
+    background-color: rgba(40, 40, 40, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    overflow: hidden;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.dropdown-item {
+    padding: 10px 15px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background-color: #E20000;
+    color: #fff;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.side-nav {
+    position: fixed;
+    right: 0;
+    top: 100px;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(5px);
+    border-left: 1px solid #333;
+    border-radius: 10px 0 0 10px;
+    padding: 10px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+}
+
+.side-item {
+    color: white;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 12px 0;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.side-item svg {
+    font-size: 18px;
+    margin-bottom: 3px;
+}
+
+.side-item:hover {
+    color: #E20000;
+    transform: scale(1.1);
+}
+
+.ellipsis {
+    margin-top: auto;
+}
+
+/* Выпадающее меню сбоку от трех точек */
+.dropdown-menu.right {
+    position: fixed;
+    right: 60px;
+    /* расстояние от края */
+    bottom: 80px;
+    /* высота от нижней точки */
+    background-color: rgba(40, 40, 40, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    overflow: hidden;
+    animation: slideInRight 0.3s ease-in-out;
+}
+
+.dropdown-item {
+    padding: 10px 15px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background-color: #E20000;
+    color: white;
+}
+
+/* Анимация появления справа */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.side-nav {
+    position: fixed;
+    right: 0;
+    top: 100px;
+    background-color: rgba(0, 0, 0, 0.85);
+    border-left: 1px solid #222;
+    border-radius: 10px 0 0 10px;
+    padding: 12px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+    z-index: 1000;
+    user-select: none;
+}
+
+.side-item {
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    margin: 16px 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.side-item svg {
+    font-size: 22px;
+    margin-bottom: 4px;
+}
+
+.side-item:hover {
+    color: #E20000;
+    transform: scale(1.15);
+}
+
+.ellipsis {
+    margin-top: auto;
+    /* "Ещё" прижата вниз */
+}
+
+/* Стабильный маленький размер подписи у "Ещё" */
+.ellipsis span {
+    font-size: 11px;
+}
+
+.side-item.ellipsis {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    user-select: none;
+}
+
+.side-item.ellipsis:hover {
+    background-color: none;
+}
+
+.menue {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    padding: 8px 0;
+    min-width: 160px;
+    font-size: 14px;
+    color: #333;
+    animation: fadeInScale 0.15s ease forwards;
+    z-index: 1000;
+}
+
+.menu div {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    color: white;
+}
+
+.menu div:hover {
+    background-color: none;
+    color: #E20000;
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    text-align: center;
+}
+
+.login-h1 {
+    font-size: 15px;
+    padding-top: 5px;
+    color: white;
+}
+
+.menu-cart {
+    font-weight: 600;
+    font-size: 14px;
+    font-family: var(--title-font);
+    color: var(--white-color) !important;
+}
+
+.menu-cart.pop {
+    display: inline-block;
+    animation: pop 0.3s ease-in-out;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.4);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

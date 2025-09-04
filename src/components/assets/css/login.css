@@ -1,0 +1,141 @@
+.containerra {
+    width: 600px;
+    margin: 0 auto;
+    padding: 30px 20px 40px;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    box-shadow: 0 6px 15px rgb(0 0 0 / 0.1);
+    font-family: 'Roboto', sans-serif;
+    background-color: #fff;
+    margin-bottom: 150px;
+    position: relative;
+    top: 50px;
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 16px;
+    cursor: pointer;
+    color: #000;
+    position: relative;
+    transition: color 0.3s ease;
+    user-select: none;
+}
+
+.tab.active {
+    color: #E20000;
+    font-weight: 500;
+}
+
+.tab.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 2px;
+    background-color: #E20000;
+    animation: slideIn 0.4s ease forwards;
+}
+
+@keyframes slideIn {
+    from {
+        width: 0;
+        left: 50%;
+    }
+
+    to {
+        width: 80%;
+        left: 10%;
+    }
+}
+
+/* Форма */
+.form label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    color: #555;
+}
+
+.form input[type="email"],
+.form input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    outline-color: #E20000;
+    transition: border-color 0.3s ease;
+}
+
+.form input[type="email"]:focus,
+.form input[type="password"]:focus {
+    border-color: #E20000;
+}
+
+/* Чекбокс */
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #E20000;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.checkbox-wrapper label {
+    font-size: 13px;
+    color: #222;
+    cursor: pointer;
+}
+
+/* Кнопка */
+.btne {
+    width: 100%;
+    border: none;
+    padding: 14px 0;
+    height: 50px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+/* Анимация пульса */
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px 2px rgba(255, 0, 128, 0.6);
+    }
+
+    50% {
+        box-shadow: 0 0 20px 6px rgba(255, 0, 128, 1);
+    }
+}
+
+/* Плейсхолдер для регистрации */
+.register-placeholder {
+    color: #999;
+    text-align: center;
+    font-size: 14px;
+    padding: 40px 0;
+    font-style: italic;
+}

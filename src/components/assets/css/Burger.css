@@ -1,0 +1,119 @@
+/* --- Overlay --- */
+.offcanvas-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+}
+
+/* --- Offcanvas меню --- */
+.offcanvas-menu {
+    z-index: 100000000;
+    position: fixed;
+    top: 0;
+    left: -280px;
+    /* скрыто изначально */
+    width: 280px;
+    height: 100%;
+    background-color: var(--title-color);
+    z-index: 1000;
+    overflow-y: auto;
+    transition: left 0.4s ease;
+    padding: 20px;
+    border-right: 3px solid var(--theme-color);
+    transition: all ease 1s;
+}
+
+.offcanvas-menu.open {
+    left: 0;
+    /* выезжает */
+}
+
+/* --- Header (логотип + крестик) --- */
+.offcanvas-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.offcanvas-header .mobile-logo img {
+    height: 40px;
+}
+
+.offcanvas-close {
+    font-size: 24px;
+    color: #fff;
+    background: #e50914;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* --- Стили меню --- */
+.th-mobile-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.th-mobile-menu li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.th-mobile-menu li a {
+    display: block;
+    padding: 12px 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.th-mobile-menu li a:hover {
+    color: #e50914;
+}
+
+/* --- Подменю --- */
+.th-mobile-menu .sub-menu {
+    display: none;
+    padding-left: 15px;
+    background: #12151d;
+}
+
+.th-mobile-menu li.menu-item-has-children:hover>.sub-menu {
+    display: block;
+}
+
+.th-mobile-menu .sub-menu li a {
+    font-size: 11px;
+    padding: 10px 0;
+    color: #aaa;
+}
+
+.th-mobile-menu .sub-menu li a:hover {
+    color: #e50914;
+}
+
+.dd {
+    width: 120%;
+    border-radius: 50%;
+}
+
+.th-menu-wrapper .mobile-logo {
+    padding-bottom: 30px;
+    padding-top: 40px;
+    display: block;
+    text-align: center;
+    background-color: var(--black-color2);
+}

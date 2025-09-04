@@ -1,0 +1,1167 @@
+/* GameClub.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
+body {
+    background-color: #0a0a0a;
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.pc-card-container {
+    background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+    padding: 2rem;
+    border-radius: 25px;
+    width: 260px;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: 0 0 30px rgba(255, 0, 200, 0.15);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.viddd {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    margin-top: 25px;
+    opacity: 0;
+    transform: scale(0.95);
+    animation: fadeZoomIn 1s ease forwards;
+    animation-delay: 0.3s;
+}
+
+.viddd video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    filter: brightness(0.85);
+    transition: filter 0.3s ease;
+}
+
+.viddd video:hover {
+    filter: brightness(1);
+}
+
+/* Ключевые кадры анимации */
+@keyframes fadeZoomIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.pc-card-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 40px rgba(255, 0, 200, 0.35);
+}
+
+.neon-border {
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+}
+
+.neon-border::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ff00c8, #6000ff, #ff00c8);
+    z-index: -1;
+    border-radius: 25px;
+    filter: blur(6px);
+}
+
+.pc-card-subtitle {
+    color: #aaaaaa;
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.pc-card-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    color: #ffffff;
+    text-shadow: 0 0 10px #ff00c8;
+}
+
+.pc-card-image-wrapper {
+    border-radius: 15px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid rgba(255, 0, 200, 0.2);
+    backdrop-filter: blur(8px);
+    margin-bottom: 1.2rem;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pc-card-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.pc-card-zone {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: #ffffff;
+}
+
+.pc-card-link {
+    color: #ff00c8;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    border-bottom: 1px dashed transparent;
+    transition: all 0.3s ease;
+}
+
+.pc-card-link:hover {
+    color: #ff33cc;
+    border-bottom: 1px dashed #ff33cc;
+}
+
+/* Optional glass effect */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(6px);
+}
+
+.pc-card-wrapper {
+    margin: 0 auto;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding-top: 125px;
+}
+
+.one {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 25px;
+    text-align: center;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.hr-line {
+    width: 100%;
+    border: none;
+    border-top: 2px solid #ff00c8;
+    opacity: 0.6;
+    margin: 2rem 0;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.brons {
+    color: white;
+}
+
+.pc-card-number {
+    font-weight: 600;
+    color: #ff4081;
+    margin-top: 10px;
+    font-size: 1.1rem;
+}
+
+.breadcumb-wrapperr {
+    background-color: #D8DDE1;
+    padding: 135px 0;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    background-image: url(../img/card/cs1.jpg);
+    filter: brightness(0.7);
+    /* затемняет фон до 70% яркости */
+}
+
+.breadcumb-wrapperr::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* top:0; right:0; bottom:0; left:0 */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* затемняющий чёрный слой с прозрачностью */
+    z-index: 1;
+}
+
+.breadcumb-wrapperr>* {
+    position: relative;
+    z-index: 2;
+    /* чтобы контент был поверх затемнения */
+}
+
+.breadcumb-title {
+    color: #fff;
+    font-size: 48px;
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s ease forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.theme-toggleeee {
+    border: none;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 8px;
+    transition: background 0.3s ease;
+    position: relative;
+    top: -8px;
+    height: 55px;
+    width: 55px;
+}
+
+.theme-togglee {
+    position: absolute;
+    top: 65%;
+    right: 0px;
+    transform: translateY(-50%);
+    background: #0b7a0b;
+    background: none;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+    color: #888;
+    height: 52px;
+    width: 10%;
+}
+
+.theme-togglee:hover {
+    color: #000;
+}
+
+.login-form {
+    max-width: 500px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    margin-top: 45px;
+    margin-bottom: 45px;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: white;
+    font-size: 22px;
+    margin-top: 35px;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.igf {
+    width: 95%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.remember-me input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    accent-color: #E20000;
+    /* Розовый цвет */
+}
+
+.remember-me label {
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+}
+
+.submit-btn {
+    width: 96%;
+    padding: 12px;
+    background-color: #E20000;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #E20000;
+}
+
+.selected-pc {
+    border: 2px solid #00ffea;
+    /* подсветка выбранного ПК */
+    box-shadow: 0 0 15px #00ffea;
+}
+
+.booked-pc {
+    opacity: 0.6;
+}
+
+.pc-booked-label {
+    display: block;
+    color: red;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.booking-notification {
+    background-color: #00ffea;
+    padding: 10px;
+    margin: 15px 0;
+    border-radius: 5px;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-content label {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.book-btn {
+    margin-top: 10px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    background: #ff9800;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.book-btn:hover {
+    background: #e68900;
+}
+
+/* Модальное окно */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 350px;
+    max-width: 100%;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.modal-actions button {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-actions button:first-child {
+    background: #4caf50;
+    color: white;
+}
+
+.modal-actions button:last-child {
+    background: #f44336;
+    color: white;
+}
+
+@keyframes fadeIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Overlay oq fon */
+.booking-form {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    border-radius: 12px;
+    padding: 20px;
+    box-sizing: border-box;
+
+    /* Animatsiya */
+    animation: modalFadeIn 0.6s ease forwards;
+    transform: translateY(30px) scale(0.95);
+    opacity: 0;
+}
+
+/* Modal chiqishi */
+@keyframes modalFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateY(-5px) scale(1.02);
+        /* bounce effekt */
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Form elementlarining ketma-ket chiqishi */
+.booking-form label,
+.booking-form input,
+.booking-form select,
+.booking-form .modal-actions {
+    opacity: 0;
+    animation: elementFadeIn 0.5s ease forwards;
+}
+
+.booking-form label:nth-of-type(1) {
+    animation-delay: 0.3s;
+}
+
+.booking-form select {
+    animation-delay: 0.4s;
+}
+
+.booking-form label:nth-of-type(2),
+.booking-form input[type="date"] {
+    animation-delay: 0.5s;
+}
+
+.booking-form label:nth-of-type(3),
+.booking-form input[type="time"] {
+    animation-delay: 0.6s;
+}
+
+.booking-form .modal-actions {
+    animation-delay: 0.8s;
+}
+
+@keyframes elementFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Form elementlari */
+.booking-form label {
+    font-weight: bold;
+    margin: 10px 0 5px;
+    color: white;
+    font-size: 20px;
+}
+
+.booking-form input,
+.booking-form select {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* Tugmalar */
+.modal-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.modal-actions button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.modal-actions button[type="submit"] {
+    background: #4caf50;
+    color: white;
+}
+
+.modal-actions button[type="submit"]:hover {
+    background: #43a047;
+}
+
+.modal-actions button[type="button"] {
+    background: #f44336;
+    color: white;
+}
+
+.modal-actions button[type="button"]:hover {
+    background: #e53935;
+}
+
+/* Animatsiya */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Muvaffaqiyatli xabar */
+.success-msg {
+    margin-top: 15px;
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    /* tashqariga chiqmasin */
+}
+
+/* Barcha input va select lar uchun umumiy uslub */
+.booking-form input,
+.booking-form select {
+    width: 80%;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    background: #fafafa;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fieldFadeIn 0.6s ease forwards;
+}
+
+/* Har bir element ketma-ket chiqishi */
+.booking-form input[type="time"] {
+    animation-delay: 0.2s;
+}
+
+.booking-form input[type="date"] {
+    animation-delay: 0.4s;
+}
+
+.booking-form select {
+    animation-delay: 0.6s;
+}
+
+/* Hover effekti */
+.booking-form input:hover,
+.booking-form select:hover {
+    border-color: #bdbdbd;
+    background: #fff;
+}
+
+/* Focus effekti */
+.booking-form input:focus,
+.booking-form select:focus {
+    border-color: #4cafef;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(76, 175, 239, 0.4);
+    transform: scale(1.02);
+}
+
+/* Animatsiya: pastdan chiqish */
+@keyframes fieldFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Container for the whole card */
+.product-card {
+    font-family: Arial, sans-serif;
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    overflow: hidden;
+    width: 300px;
+    /* Adjust as needed */
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Hover effect for the card */
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Image section */
+.product-image-container {
+    position: relative;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.product-image {
+    max-width: 90%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Badges (Xit savdo, IMEI) */
+.status-badges {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.badge {
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.badge.hot-deal {
+    background-color: #ff3b3b;
+    /* Red color from the image */
+}
+
+.badge.imei {
+    background-color: #4cd964;
+    /* Green color from the image */
+}
+
+/* Favorite and Compare icons */
+.favorite-icons {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.icon {
+    background-color: #fff;
+    width: 120%;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s;
+    border: none;
+}
+
+.img-tag {
+    position: relative;
+    top: -18px;
+}
+
+/* Details section below the image */
+.product-details {
+    padding: 14px;
+    margin-top: -15px;
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 8px 0;
+}
+
+.monthly-payment {
+    font-size: 14px;
+    color: #999;
+    margin: 0 0 16px 0;
+}
+
+/* Price and button section */
+.price-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+}
+
+.add-to-cart-button {
+    background-color: #ffd700;
+    width: 20%;
+    color: #000;
+    border: none;
+    border-radius: 12px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.add-to-cart-button:hover {
+    background-color: #e5c300;
+}
+
+.products-grid {
+    padding: 0 85px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 55px;
+}
+
+/* Add these styles to your main CSS file or a dedicated Wishlist.css */
+
+.wishlist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+.wishlist-item-wrapper {
+    position: relative;
+    /* You can add a border or shadow here if needed */
+}
+
+/* Style the action buttons to be separate from the card itself */
+.wishlist-item-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.wishlist-item-actions button {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.wishlist-item-actions button:hover {
+    background-color: #f0f0f0;
+}
+
+.wishlist-item-actions button:first-child {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+.wishlist-item-actions button:first-child:hover {
+    background-color: #0056b3;
+}
+
+.goid {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-to-cart-buttone {
+    background-color: #ffd700;
+    width: 100%;
+    color: #000;
+    border: none;
+    border-radius: 12px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.product-description {
+    font-size: 18px;
+    color: black;
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1000px) {
+    .product-card {
+        margin: 15px auto;
+    }
+
+    .gfgfg {
+        font-size: 20px !important;
+    }
+
+    .checkout-section h3 {
+        font-size: 25px;
+    }
+
+    .remove-btn {
+        margin-top: 25px;
+        margin: 0 auto;
+    }
+}
+
+
+
+@media only screen and (min-width: 800px) and (max-width: 900px) {
+    .product-card {
+        margin: 15px auto;
+    }
+
+    .gfgfg {
+        font-size: 20px !important;
+    }
+
+    .checkout-section h3 {
+        font-size: 25px;
+    }
+
+    .remove-btn {
+        margin-top: 25px;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (min-width: 700px) and (max-width: 800px) {
+    .product-card {
+        margin: 15px auto;
+    }
+
+    .gfgfg {
+        font-size: 20px !important;
+    }
+
+    .checkout-section h3 {
+        font-size: 25px;
+    }
+
+    .remove-btn {
+        margin-top: 25px;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 700px) {
+    .product-card {
+        margin: 15px auto;
+    }
+
+    .gfgfg {
+        font-size: 16px !important;
+    }
+
+    .checkout-section h3 {
+        font-size: 20px;
+    }
+
+    .remove-btn {
+        margin-top: 25px;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (min-width: 500px) and (max-width: 600px) {
+    .product-card {
+        margin: 15px auto;
+    }
+
+    .booking-form select {
+        width: 81%;
+        padding: 2px 14px;
+        margin-bottom: 18px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 15px;
+        outline: none;
+        background: #fafafa;
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(15px);
+        animation: fieldFadeIn 0.6s ease forwards;
+    }
+
+    .booking-form input,
+    .booking-form select {
+        width: 80%;
+        padding: 2px 14px;
+        margin-bottom: 18px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 15px;
+        outline: none;
+        background: #fafafa;
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(15px);
+        animation: fieldFadeIn 0.6s ease forwards;
+    }
+
+    .gfgfg {
+        font-size: 16px !important;
+    }
+
+    .checkout-section h3 {
+        font-size: 20px;
+    }
+
+    .remove-btn {
+        margin-top: 25px;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (min-width: 400px) and (max-width: 500px) {
+    .orderby {
+        width: 90% !important;
+    }
+
+    .remove-btn {
+        margin-top: 25px;
+        margin: 0 auto;
+    }
+
+    .product-card {
+        margin-top: 15px;
+    }
+
+    .gfgfg {
+        font-size: 16px !important;
+    }
+
+    .checkout-section h3 {
+        font-size: 20px;
+    }
+
+    .cart-actions button {
+        margin-top: 5px;
+    }
+
+    .booking-form select {
+        width: 81%;
+        padding: 2px 14px;
+        margin-bottom: 18px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 15px;
+        outline: none;
+        background: #fafafa;
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(15px);
+        animation: fieldFadeIn 0.6s ease forwards;
+    }
+
+    .booking-form input,
+    .booking-form select {
+        width: 80%;
+        padding: 2px 14px;
+        margin-bottom: 18px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 15px;
+        outline: none;
+        background: #fafafa;
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(15px);
+        animation: fieldFadeIn 0.6s ease forwards;
+    }
+}
+
+
+@media only screen and (min-width: 342px) and (max-width: 400px) {
+    .orderby {
+        width: 90% !important;
+    }
+
+    .price {
+        font-size: 15px;
+        font-weight: bold;
+        color: #000;
+    }
+
+    .product-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+        margin: 0 0 8px 0;
+    }
+
+    .add-to-cart-button {
+        background-color: #ffd700;
+        width: 28%;
+        color: #000;
+        border: none;
+        border-radius: 12px;
+        padding: 10px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .fff {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .gfgfg {
+        font-size: 16px !important;
+    }
+
+    .remove-btn {
+        margin-top: 25px;
+        margin: 0 auto;
+    }
+
+    .product-card {
+        margin-top: 15px;
+    }
+
+    .booking-form select {
+        width: 81%;
+        padding: 2px 14px;
+        margin-bottom: 18px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 15px;
+        outline: none;
+        background: #fafafa;
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(15px);
+        animation: fieldFadeIn 0.6s ease forwards;
+    }
+
+    .booking-form input,
+    .booking-form select {
+        width: 80%;
+        padding: 2px 14px;
+        margin-bottom: 18px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 15px;
+        outline: none;
+        background: #fafafa;
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(15px);
+        animation: fieldFadeIn 0.6s ease forwards;
+    }
+}

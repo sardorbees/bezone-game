@@ -1,0 +1,138 @@
+/* .order-form {
+    max-width: 1440px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+.order-form h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+    font-size: 28px;
+} */
+
+/* .cart-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    transition: background 0.2s;
+} */
+
+/* .cart-item:hover {
+    background: #f9f9f9;
+}
+
+
+.cart-item img {
+    border-radius: 8px;
+    object-fit: cover;
+    width: 350px;
+    height: 350px;
+} */
+
+/* .cart-item span {
+    flex: 1;
+    font-size: 16px;
+    color: #555;
+}
+
+h3 {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 20px;
+    color: #222;
+} */
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.ttttt {
+    position: relative;
+    top: 55px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+}
+
+.btn-danger {
+    position: relative;
+    top: 50px;
+}
+
+.sgdfg {
+    margin-top: 15px;
+}
+
+.text-center {
+    color: white;
+    position: relative;
+    padding-top: 15px;
+}
+
+form input,
+form select {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.table>:not(:last-child)>:last-child>* {
+    border-bottom-color: white;
+}
+
+form input:focus,
+form select:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+form button {
+    padding: 14px 0;
+    border: none;
+    background: #4CAF50;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form button:hover {
+    background: #43a047;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-item span {
+        text-align: left;
+    }
+
+    h3 {
+        text-align: left;
+    }
+}
+
+.product-thumb {
+    width: 171px;
+    margin: 15px auto;
+    position: relative;
+    left: 85px;
+}

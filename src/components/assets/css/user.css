@@ -1,0 +1,759 @@
+/* Общий контейнер */
+.containeree {
+    max-width: 1100px;
+    margin: 0 auto;
+    font-family: "Segoe UI", "Roboto", sans-serif;
+    color: #333;
+    padding: 60px 15px 55px;
+}
+
+/* Общий стиль для кнопок */
+.nav-iteme {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 12px 18px;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #444;
+    background: #f8f9fa;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+/* Hover эффект */
+.nav-iteme:hover {
+    background: #e9ecef;
+    color: #000;
+    transform: translateX(3px);
+}
+
+/* Активный таб */
+.nav-iteme.active {
+    background: #4a90e2;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(74, 144, 226, 0.3);
+    transform: translateX(0);
+}
+
+/* Добавим плавность при клике */
+.nav-iteme:active {
+    transform: scale(0.97);
+}
+
+/* Для иконок — небольшой отступ */
+.nav-iteme::before {
+    content: "";
+    margin-right: 8px;
+}
+
+/* Адаптив для мобил */
+@media (max-width: 768px) {
+    .nav-iteme {
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+}
+
+
+/* Хлебные крошки */
+.main-breadcrumbe {
+    background: #f8f9fa;
+    padding: 12px 18px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.breadcrumb-item a {
+    color: #007bff;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-item a:hover {
+    color: #0056b3;
+}
+
+.breadcrumb-item.active {
+    color: #6c757d;
+}
+
+/* Левая боковая панель */
+.cardd {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    min-width: 250px;
+    flex-shrink: 0;
+    /* не сжимается */
+}
+
+
+.nav-pills .nav-link {
+    color: #444;
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: all 0.25s ease-in-out;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.nav-pills .nav-link:hover {
+    background: #f1f3f5;
+    transform: translateX(3px);
+}
+
+.nav-pills .nav-link.active {
+    background: #E20000;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 3px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Правая часть */
+.carde {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    transition: all 0.3s ease;
+}
+
+.carde:hover {
+    box-shadow: 0 7px 22px rgba(0, 0, 0, 0.12);
+}
+
+/* Формы */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    padding: 12px 14px;
+    font-size: 15px;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, .2);
+}
+
+/* Кнопки */
+.btn {
+    border-radius: 8px;
+    padding: 10px 18px;
+    margin-right: 10px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: none;
+    border: none;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+.btn-light {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    color: #333;
+}
+
+.btn-light:hover {
+    background: #e2e6ea;
+    transform: translateY(-2px);
+}
+
+/* 📱 Смартфоны */
+@media (max-width: 576px) {
+    .containeree {
+        padding-top: 80px;
+        padding-bottom: 40px;
+    }
+
+    .main-breadcrumbe {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+
+    .cardd,
+    .carde {
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: -2px;
+    }
+
+    .btn {
+        border-radius: 10px;
+        padding: 10px 18px;
+        font-size: 10px !important;
+        font-weight: 500;
+        transition: 0.3s ease;
+    }
+}
+
+/* 📲 Планшеты */
+@media (min-width: 577px) and (max-width: 769px) {
+    .containeree {
+        padding: 90px 20px 45px;
+    }
+
+    .cardd {
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        padding: 9px 16px;
+    }
+
+    .cardd {
+        width: 100%;
+        margin-bottom: 20px;
+        display: block;
+    }
+}
+
+/* 💻 Небольшие ноутбуки */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .containeree {
+        padding: 100px 25px 50px;
+    }
+
+    .cardd {
+        padding: 18px;
+    }
+
+    .carde {
+        padding: 20px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .containeree {
+        flex-direction: column;
+        /* меню сверху */
+    }
+
+    .cardd {
+        width: 100%;
+        /* занимает всю ширину */
+        margin-bottom: 20px;
+        display: block;
+        /* всегда видно */
+    }
+}
+
+/* Карточка */
+.carde {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 0.6s ease;
+}
+
+.carde:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Заголовки */
+.carde h6 {
+    font-weight: 700;
+    font-size: 15px;
+    color: #333;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    animation: slideDown 0.5s ease;
+}
+
+/* Формы */
+.form-group {
+    margin-bottom: 18px;
+    animation: fadeUp 0.5s ease;
+}
+
+.form-control {
+    border-radius: 12px;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 6px rgba(74, 144, 226, 0.4);
+}
+
+/* Кнопки */
+.btn {
+    border-radius: 12px;
+    padding: 8px 18px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #4a90e2, #357ab7);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: none !important;
+    transform: scale(1.05);
+}
+
+.btn-light {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+}
+
+.btn-light:hover {
+    background: #ececec;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Чекбоксы */
+.form-check-input {
+    accent-color: #4a90e2;
+    transform: scale(1.2);
+    margin-right: 8px;
+}
+
+/* Карточка */
+.carde {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    transition: all 0.3s ease;
+}
+
+.carde:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Заголовки */
+.carde h6 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2d3748;
+    letter-spacing: 0.5px;
+    margin-bottom: 15px;
+}
+
+/* Красивые inputs с анимацией */
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 14px;
+    background: #f9fafb;
+    transition: 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #4f46e5;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(79, 70, 229, 0.3);
+    outline: none;
+}
+
+/* Label animation */
+.form-group label {
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    transform: translateY(-50%);
+    color: #6b7280;
+    font-size: 14px;
+    transition: 0.3s ease;
+    pointer-events: none;
+    background: #fff;
+    padding: 0 5px;
+}
+
+.form-group input:focus+label,
+.form-group textarea:focus+label,
+.form-group input:not(:placeholder-shown)+label,
+.form-group textarea:not(:placeholder-shown)+label {
+    top: -8px;
+    left: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #E20000;
+}
+
+/* Кнопки */
+.btn {
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+.btn-primary {
+    background: none !important;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: none !important;
+    transform: scale(1.05);
+}
+
+.btn-light {
+    background: #f3f4f6;
+    border: none;
+    color: #374151;
+}
+
+.btn-light:hover {
+    background: #e5e7eb;
+}
+
+.main-breadcrumbe {
+    background: #f8f9fa;
+    padding: 12px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.breadcrumb {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+}
+
+.breadcrumb-item a {
+    color: #E20000;
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Pseudo-element uchun content property to'g'ri ishlatilgan */
+.breadcrumb-item a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0%;
+    height: 2px;
+    background: #E20000;
+    transition: width 0.3s ease;
+}
+
+.breadcrumb-item a:hover::after {
+    width: 100%;
+}
+
+.breadcrumb-item a:hover {
+    color: #E20000;
+    transform: translateY(-2px);
+}
+
+.breadcrumb-item.active {
+    color: #6c757d;
+    font-weight: 600;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    content: "›";
+    color: #adb5bd;
+    font-size: 14px;
+    margin: 0 8px;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.welcome {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid #E20000;
+    /* курсор */
+    width: 0;
+    margin: 0 auto;
+    animation: typing 3s steps(25, end) forwards, blink 0.8s step-end infinite;
+    padding-bottom: 2%;
+}
+
+/* Эффект печати */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+/* Мигающий курсор */
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+.notifications-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px;
+}
+
+.notification-card {
+    border-radius: 10px;
+    padding: 15px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease, transform 0.3s ease;
+    position: relative;
+    font-family: 'Arial', sans-serif;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 0.5s forwards;
+}
+
+.notification-card.unread {
+    background-color: #cff;
+    border-left: 5px solid #00aaff;
+}
+
+.notification-card.read {
+    background-color: #f5f5f5;
+    color: #777;
+    border-left: 5px solid #ccc;
+}
+
+.notification-card:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.notification-message {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.notification-info {
+    font-size: 14px;
+    color: #555;
+}
+
+.mark-read-btn {
+    margin-top: 8px;
+    padding: 6px 12px;
+    background-color: #00aaff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mark-read-btn:hover {
+    background-color: #0088cc;
+    transform: scale(1.05);
+}
+
+/* Анимация появления */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.no-notifications {
+    text-align: center;
+    font-size: 24px;
+    color: #555;
+    margin-top: 30px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* notifications.css */
+.no-notifications {
+    text-align: center;
+    color: #888;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.notifications-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notification-item {
+    margin-bottom: 12px;
+    padding: 14px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.4s ease-out;
+    transition: transform 0.2s, background 0.3s;
+}
+
+.notification-item.read {
+    background: #f3f3f3;
+}
+
+.notification-item:hover {
+    transform: translateY(-3px);
+    background: #fffde7;
+}
+
+.notification-item b {
+    font-size: 1rem;
+    color: #333;
+}
+
+.notification-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 4px;
+}
+
+.mark-btn {
+    margin-top: 8px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 6px;
+    background: #4caf50;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.mark-btn:hover {
+    background: #45a049;
+    transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}

@@ -1,0 +1,74 @@
+.orders {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: "Rajdhani", sans-serif;
+}
+
+.orders h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: left;
+    color: #222;
+}
+
+.order {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    margin-bottom: 25px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.order:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.order h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.order p {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #444;
+}
+
+.order ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.order ul li {
+    padding: 10px 0;
+    border-bottom: 1px dashed #ddd;
+    font-size: 15px;
+    font-weight: 500;
+    color: #222;
+}
+
+.order ul li:last-child {
+    border-bottom: none;
+}
+
+.order b {
+    color: #111;
+}
+
+.order-total {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 10px;
+    text-align: right;
+    color: #2c7a7b;
+    /* зелёный акцент */
+}
