@@ -19,7 +19,6 @@ import Profile from './components/pages/Profile';
 import PointTable from './components/point-table/PointTable';
 import Players from './components/players/Players';
 import { TranslationProvider } from "./components/translator/Translator";
-import BookingForm from './components/pages/BookingForm';
 import { AuthProvider } from './components/authсontext/AuthContext';
 import Card from './components/card/Card';
 import Wishlist from './components/wishlist/Wishlist';
@@ -40,7 +39,6 @@ function App() {
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/standart-pc' element={<Pc />} />
-              <Route path='/bookingform' element={<BookingForm />} />
               <Route path='/contact' element={<Contact />} />
               <Route path='/tournament' element={<Tournament />} />
               <Route
