@@ -5,7 +5,6 @@ import "../assets/css/user.css";
 import { FaUser } from "react-icons/fa6";
 import { IoIosSettings, IoIosNotifications } from "react-icons/io";
 import { MdOutlineSecurity } from "react-icons/md";
-import { CiCreditCard1 } from "react-icons/ci";
 import { IoFastFood } from "react-icons/io5";
 import '../assets/css/OrderList.css'
 
@@ -16,51 +15,39 @@ const UserProfile = () => {
     const [user, setUser] = useState(null);
     const [sessions, setSessions] = useState([]);
     const [orders, setOrders] = useState([]);
-    const [editData, setEditData] = useState({
-        username: "",
-        phone_number: "",
-    });
-    const [passwordData, setPasswordData] = useState({
-        old_password: "",
-        new_password: "",
-    });
+    const [form, setForm] = useState({});
+    const [editing, setEditing] = useState(false);
+    const [passwordData, setPasswordData] = useState({ old_password: "", new_password: "" });
     const navigate = useNavigate();
 
+    // Загружаем профиль с кэшем
     useEffect(() => {
-        API.get("api/accounts/sessions/")
-            .then((res) => {
-                setSessions(res.data);
-                setLoading(false);
-            })
-            .catch(() => setLoading(false));
-    }, []);
-    useEffect(() => {
-        if (user) fetchOrders();
-    }, [user]);
-
-    // Загружаем данные профиля
-    useEffect(() => {
+        const cachedProfile = localStorage.getItem("profile");
+        if (cachedProfile) {
+            setUser(JSON.parse(cachedProfile));
+            setForm(JSON.parse(cachedProfile));
+        }
         API.get("api/accounts/profile/")
             .then((res) => {
                 setUser(res.data);
-                setEditData({
-                    username: res.data.username,
-                    phone_number: res.data.phone_number,
-                });
+                setForm(res.data);
+                localStorage.setItem("profile", JSON.stringify(res.data));
             })
             .catch(() => navigate("/login"));
     }, [navigate]);
 
-    // Обновить профиль
-    const handleUpdateProfile = (e) => {
-        e.preventDefault();
-        API.put("api/accounts/edit-profile/", editData)
-            .then((res) => {
-                setUser(res.data);
-                alert("✅ Профиль обновлен");
-            })
-            .catch(() => alert("❌ Ошибка обновления профиля"));
-    };
+    // Сессии
+    useEffect(() => {
+        API.get("api/accounts/sessions/")
+            .then((res) => setSessions(res.data))
+            .catch(() => { })
+            .finally(() => setLoading(false));
+    }, []);
+
+    // Заказы
+    useEffect(() => {
+        if (user) fetchOrders();
+    }, [user]);
 
     const fetchOrders = async () => {
         try {
@@ -71,9 +58,10 @@ const UserProfile = () => {
         }
     };
 
+    // Уведомления
     const fetchNotifications = async () => {
         try {
-            const res = await API.get("api/bron_Pc/notifications/"); // expects list of user's notifications
+            const res = await API.get("api/bron_Pc/notifications/");
             setNotes(res.data);
         } catch (err) {
             console.error("notifications fetch error", err);
@@ -88,15 +76,42 @@ const UserProfile = () => {
         return () => clearInterval(interval);
     }, []);
 
-    // Отметить как прочитанное
     const markRead = async (id) => {
         try {
             await API.patch(`api/bron_Pc/notifications/${id}/`, { is_read: true });
-            setNotes(prev => prev.map(n => n.id === id ? { ...n, is_read: true } : n));
+            setNotes((prev) => prev.map((n) => (n.id === id ? { ...n, is_read: true } : n)));
         } catch (err) {
             console.error(err);
         }
     };
+
+    // Изменение формы
+    const handleChange = (e) => {
+        const { name, value, files } = e.target;
+        setForm({ ...form, [name]: files ? files[0] : value });
+    };
+
+    // Сохранение профиля
+    const handleSave = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        if (form.username) formData.append("username", form.username);
+        if (form.first_name) formData.append("first_name", form.first_name);
+        if (form.last_name) formData.append("last_name", form.last_name);
+        if (form.phone_number) formData.append("phone_number", form.phone_number);
+        if (form.image instanceof File) formData.append("image", form.image);
+
+        try {
+            await API.put("api/accounts/edit-profile/", formData);
+            const updated = await API.get("api/accounts/profile/");
+            setUser(updated.data);
+            setEditing(false);
+            alert("✅ Профиль обновлён");
+        } catch {
+            alert("❌ Ошибка обновления");
+        }
+    };
+
     // Смена пароля
     const handleChangePassword = (e) => {
         e.preventDefault();
@@ -108,17 +123,13 @@ const UserProfile = () => {
             .catch(() => alert("❌ Ошибка смены пароля"));
     };
 
+    // Завершение сессии
     const handleDelete = (id) => {
         if (!window.confirm("Завершить эту сессию?")) return;
-
         API.delete(`api/accounts/sessions/${id}/delete/`)
-            .then(() => {
-                setSessions(sessions.filter((s) => s.id !== id));
-            })
+            .then(() => setSessions(sessions.filter((s) => s.id !== id)))
             .catch(() => alert("❌ Ошибка завершения сессии"));
     };
-
-    if (loading) return <p>Загрузка...</p>;
 
     // Выход
     const handleLogout = () => {
@@ -127,8 +138,9 @@ const UserProfile = () => {
         alert("🚪 Вы вышли");
         navigate("/login");
     };
+
+    if (loading) return <p>Загрузка...</p>;
     if (!user) return <p className="text-center">Загрузка...</p>;
-    if (!user) return <p>Для просмотра заказов нужно авторизоваться</p>;
 
     return (
         <div>
@@ -142,50 +154,26 @@ const UserProfile = () => {
             </div>
 
             <div className="containeree">
-                <h1 className="welcome">Добро пожаловать,  {user.username} 🎉</h1>
-                <nav aria-label="breadcrumb" className="main-breadcrumbe">
-                    <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="/">Основной</a></li>
-                        <li className="breadcrumb-item"><a href="#">Пользователь</a></li>
-                        <li className="breadcrumb-item active" aria-current="page">Настройки профиля</li>
-                        <li className="breadcrumb-item active" aria-current="page"><a href="/standart-pc" className="breadcrumb-item" style={{ color: '#6c757d' }}>Забронировать Pc</a></li>
-                    </ol>
-                </nav>
-
+                <h1 className="welcome">Добро пожаловать, {user.username} 🎉</h1>
                 <div className="row gutters-sm type">
                     {/* Боковое меню */}
                     <div className="col-md-4 d-nonen d-md-block">
                         <div className="cardd">
                             <div className="card-body">
                                 <nav className="nav flex-column nav-pills nav-gap-y-1">
-                                    <button
-                                        onClick={() => setActiveTab("profile")}
-                                        className={`nav-iteme nav-link ${activeTab === "profile" ? "active" : ""}`}
-                                    >
+                                    <button onClick={() => setActiveTab("profile")} className={`nav-iteme nav-link ${activeTab === "profile" ? "active" : ""}`}>
                                         <FaUser /> Информация профиля
                                     </button>
-                                    <button
-                                        onClick={() => setActiveTab("account")}
-                                        className={`nav-iteme nav-link ${activeTab === "account" ? "active" : ""}`}
-                                    >
+                                    <button onClick={() => setActiveTab("account")} className={`nav-iteme nav-link ${activeTab === "account" ? "active" : ""}`}>
                                         <IoIosSettings /> Активные сессии
                                     </button>
-                                    <button
-                                        onClick={() => setActiveTab("security")}
-                                        className={`nav-iteme nav-link ${activeTab === "security" ? "active" : ""}`}
-                                    >
+                                    <button onClick={() => setActiveTab("security")} className={`nav-iteme nav-link ${activeTab === "security" ? "active" : ""}`}>
                                         <MdOutlineSecurity /> Безопасность
                                     </button>
-                                    <button
-                                        onClick={() => setActiveTab("notification")}
-                                        className={`nav-iteme nav-link ${activeTab === "notification" ? "active" : ""}`}
-                                    >
+                                    <button onClick={() => setActiveTab("notification")} className={`nav-iteme nav-link ${activeTab === "notification" ? "active" : ""}`}>
                                         <IoIosNotifications /> Уведомления
                                     </button>
-                                    <button
-                                        onClick={() => setActiveTab("billing")}
-                                        className={`nav-iteme nav-link ${activeTab === "billing" ? "active" : ""}`}
-                                    >
+                                    <button onClick={() => setActiveTab("billing")} className={`nav-iteme nav-link ${activeTab === "billing" ? "active" : ""}`}>
                                         <IoFastFood /> Заказы
                                     </button>
                                 </nav>
@@ -193,7 +181,7 @@ const UserProfile = () => {
                         </div>
                     </div>
 
-                    {/* Контент справа */}
+                    {/* Контент */}
                     <div className="col-md-8">
                         <div className="carde">
                             <div className="card-body tab-content">
@@ -201,63 +189,23 @@ const UserProfile = () => {
                                     <div>
                                         <h6>Редактирование профиля</h6>
                                         <hr />
-                                        <form onSubmit={handleUpdateProfile}>
-                                            <div className="form-group">
-                                                <label>Имя пользователя</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control"
-                                                    value={editData.username}
-                                                    placeholder="Имя пользователя"
-                                                    onChange={(e) =>
-                                                        setEditData({ ...editData, username: e.target.value })
-                                                    }
-                                                />
+                                        {!editing ? (
+                                            <div>
+                                                <p><b>Имя пользователя:</b> {user.username}</p>
+                                                <p><b>Телефон:</b> {user.phone_number}</p>
+                                                <button className="btn btn-primarye" onClick={() => setEditing(true)}>Редактировать</button>
                                             </div>
-
-                                            <div className="form-group">
-                                                <label>Телефон</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control"
-                                                    placeholder="Телефон"
-                                                    value={editData.phone_number}
-                                                    onChange={(e) =>
-                                                        setEditData({ ...editData, phone_number: e.target.value })
-                                                    }
-                                                />
-                                            </div>
-
-                                            <div className="form-group">
-                                                <label>Email</label>
-                                                <input
-                                                    type="email"
-                                                    placeholder="Электронная почта"
-                                                    className="form-control"
-                                                    value={editData.email}
-                                                    onChange={(e) =>
-                                                        setEditData({ ...editData, email: e.target.value })
-                                                    }
-                                                />
-                                            </div>
-
-                                            <div className="form-group">
-                                                <label>Адрес</label>
-                                                <input
-                                                    type="text"
-                                                    placeholder="Адрес"
-                                                    className="form-control"
-                                                    value={editData.address}
-                                                    onChange={(e) =>
-                                                        setEditData({ ...editData, address: e.target.value })
-                                                    }
-                                                />
-                                            </div>
-
-                                            <button type="submit" className="btn btn-primarye">
-                                                Сохранить изменения
-                                            </button>
-                                        </form>
+                                        ) : (
+                                            <form onSubmit={handleSave}>
+                                                <input type="text" name="username" value={form.username || ""} placeholder="Имя пользователя" className="form-control mb-2" onChange={handleChange} />
+                                                <input type="text" name="first_name" value={form.first_name || ""} placeholder="Имя" className="form-control mb-2" onChange={handleChange} />
+                                                <input type="text" name="last_name" value={form.last_name || ""} placeholder="Фамилия" className="form-control mb-2" onChange={handleChange} />
+                                                <input type="text" name="phone_number" value={form.phone_number || ""} placeholder="Телефон" className="form-control mb-2" onChange={handleChange} />
+                                                <input type="file" name="image" className="form-control mb-2" onChange={handleChange} />
+                                                <button type="submit" className="btn btn-success">Сохранить</button>
+                                                <button type="button" className="btn btn-secondary ml-2" onClick={() => setEditing(false)}>Отмена</button>
+                                            </form>
+                                        )}
                                     </div>
                                 )}
 
@@ -267,22 +215,12 @@ const UserProfile = () => {
                                             <p>Нет активных сессий ✅</p>
                                         ) : (
                                             sessions.map((s) => (
-                                                <div
-                                                    key={s.id}
-                                                    className="list-group-item d-flex justify-content-between align-items-center"
-                                                >
+                                                <div key={s.id} className="list-group-item d-flex justify-content-between align-items-center">
                                                     <div>
                                                         <p><strong>Устройство:</strong> {s.device}</p>
                                                         <p><strong>IP:</strong> {s.ip_address}</p>
-                                                        <p><strong>Начало:</strong> {new Date(s.session_start).toLocaleString()}</p>
-                                                        <p><strong>Последняя активность:</strong> {new Date(s.last_activity).toLocaleString()}</p>
                                                     </div>
-                                                    <button
-                                                        className="btn btn-sm btn-danger"
-                                                        onClick={() => handleDelete(s.id)}
-                                                    >
-                                                        Завершить
-                                                    </button>
+                                                    <button className="btn btn-sm btn-danger" onClick={() => handleDelete(s.id)}>Завершить</button>
                                                 </div>
                                             ))
                                         )}
@@ -294,22 +232,8 @@ const UserProfile = () => {
                                         <h6>Смена пароля</h6>
                                         <hr />
                                         <form onSubmit={handleChangePassword}>
-                                            <div className="form-group">
-                                                <input
-                                                    type="password"
-                                                    placeholder="Старый пароль"
-                                                    className="form-control"
-                                                    value={passwordData.old_password}
-                                                    onChange={(e) => setPasswordData({ ...passwordData, old_password: e.target.value })}
-                                                />
-                                                <input
-                                                    type="password"
-                                                    placeholder="Новый пароль"
-                                                    className="form-control mt-2"
-                                                    value={passwordData.new_password}
-                                                    onChange={(e) => setPasswordData({ ...passwordData, new_password: e.target.value })}
-                                                />
-                                            </div>
+                                            <input type="password" placeholder="Старый пароль" className="form-control mb-2" value={passwordData.old_password} onChange={(e) => setPasswordData({ ...passwordData, old_password: e.target.value })} />
+                                            <input type="password" placeholder="Новый пароль" className="form-control mb-2" value={passwordData.new_password} onChange={(e) => setPasswordData({ ...passwordData, new_password: e.target.value })} />
                                             <button type="submit" className="btn btn-warning">Изменить пароль</button>
                                         </form>
                                         <hr />
@@ -319,32 +243,16 @@ const UserProfile = () => {
 
                                 {activeTab === "notification" && (
                                     <div>
-                                        <h6>Настройки уведомлений</h6>
+                                        <h6>Уведомления</h6>
                                         {notes.length === 0 ? (
                                             <h1 className="no-notifications">Уведомлений нет 🎉</h1>
                                         ) : (
                                             <ul className="notifications-list">
                                                 {notes.map((n) => (
-                                                    <li
-                                                        key={n.id}
-                                                        className={`notification-item ${n.is_read ? "read" : "unread"}`}
-                                                    >
-                                                        <div className="notification-header">
-                                                            <b>{n.message}</b>
-                                                        </div>
-                                                        <div className="notification-body">
-                                                            ПК: {n.pc_number} | Тариф: {n.tariff}
-                                                        </div>
-                                                        <div className="notification-footer">
-                                                            Дата: {n.booking_date} {n.booking_time}
-                                                        </div>
-                                                        <div className="notification-status">
-                                                            Статус: {n.is_approved ? "✅ Одобрено" : "⏳ В ожидании"}
-                                                        </div>
+                                                    <li key={n.id} className={`notification-item ${n.is_read ? "read" : "unread"}`}>
+                                                        <b>{n.message}</b>
                                                         {!n.is_read && (
-                                                            <button className="mark-read-btn" onClick={() => markRead(n.id)}>
-                                                                Отметить прочитанным
-                                                            </button>
+                                                            <button className="mark-read-btn" onClick={() => markRead(n.id)}>Отметить прочитанным</button>
                                                         )}
                                                     </li>
                                                 ))}
@@ -360,37 +268,25 @@ const UserProfile = () => {
                                         {orders.length === 0 ? (
                                             <p>Заказы отсутствуют</p>
                                         ) : (
-                                            orders.map(order => (
+                                            orders.map((order) => (
                                                 <div key={order.id} className="order">
-                                                    <h3>
-                                                        Заказ #{order.id} — {new Date(order.created_at).toLocaleString()}
-                                                    </h3>
-
-                                                    <p>
-                                                        <b>Кабинет:</b> {order.cabinet} | <b>Комната:</b> {order.room} |{" "}
-                                                        <b>Место:</b> {order.seat} | <b>Зоны и Тарифы:</b> {order.order_type}
-                                                    </p>
-
+                                                    <h3>Заказ #{order.id}</h3>
                                                     <ul>
-                                                        {order.items.map(item => (
-                                                            <li key={item.id}>
-                                                                {item.title} — {item.quantity} шт —{" "}
-                                                                {Number(item.price) * item.quantity} сум
-                                                            </li>
+                                                        {order.items.map((item) => (
+                                                            <li key={item.id}>{item.title} — {item.quantity} шт</li>
                                                         ))}
                                                     </ul>
-
-                                                    <p>
-                                                        <b>Итого:</b> {order.total} сум
-                                                    </p>
+                                                    <p><b>Итого:</b> {order.total} сум</p>
                                                 </div>
                                             ))
                                         )}
                                     </div>
                                 )}
+
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

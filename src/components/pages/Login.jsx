@@ -5,10 +5,11 @@ import API from "../api";
 import { useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import FloatingButtons from '../floatingbuttons/FloatingButtons';
+import { loginUser, logoutUser, isAuthenticated } from "../auth"; // <-- импортируем
 
 const Login = () => {
     const [form, setForm] = useState({ username: '', password: '' });
-    const [remember, setRemember] = useState(true); // можно добавить, если нужна логика "запомнить"
+    const [remember, setRemember] = useState(true);
     const [showPassword, setShowPassword] = useState(false);
     const { lang } = useLang();
     const navigate = useNavigate();
@@ -23,16 +24,16 @@ const Login = () => {
                 password: form.password,
             });
 
-            localStorage.setItem("access", res.data.access);
+            // сохраняем токены через loginUser
+            loginUser(res.data.access);
             localStorage.setItem("refresh", res.data.refresh);
-            window.dispatchEvent(new Event("authChanged"));
 
-            // 🔥 Сразу на страницу профиля
+            window.dispatchEvent(new Event("authChanged"));
             navigate("/profile");
         } catch (err) {
             if (err.response?.status === 401) {
                 alert(lang === "uz" ? "Iltimos, qayta kiriting" : "Авторизуйтесь снова");
-                localStorage.removeItem("access");
+                logoutUser(); // очищаем токены
                 localStorage.removeItem("refresh");
                 window.dispatchEvent(new Event("authChanged"));
                 navigate("/login");

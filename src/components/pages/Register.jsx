@@ -7,8 +7,8 @@ import "../assets/css/app.min.css";
 import "../assets/css/style.css";
 import "../assets/css/Burger.css";
 import "../assets/css/GameClub.css";
-
 import { useLang } from "../translator/Translator";
+import { loginUser } from "../auth"; // 👈 импортируем функции
 
 export default function Register() {
     const [form, setForm] = useState({
@@ -34,11 +34,21 @@ export default function Register() {
         formData.append("phone_number", form.phone_number);
 
         try {
-            await API.post("api/accounts/register/", formData, {
+            const res = await API.post("api/accounts/register/", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
+
             alert("✅ Регистрация прошла успешно");
-            navigate("/login");
+
+            // ⚡ сразу логиним пользователя
+            if (res.data?.access) {
+                loginUser(res.data.access);
+                localStorage.setItem("refresh", res.data.refresh);
+                window.dispatchEvent(new Event("authChanged"));
+                navigate("/profile");
+            } else {
+                navigate("/login"); // если токен не вернулся, перенаправляем на вход
+            }
         } catch (err) {
             console.error(err.response?.data || err);
             alert("❌ Ошибка регистрации");
@@ -122,7 +132,9 @@ export default function Register() {
                             ? "Men ommaviy taklif shartlarini qabul qilaman"
                             : "Я принимаю условия публичной оферты"}
                         <br />
-                        <a href="/login">{lang === "uz" ? "Login orqali kiring" : "Зайти через Вход"}</a>
+                        <a href="/login">
+                            {lang === "uz" ? "Login orqali kiring" : "Зайти через Вход"}
+                        </a>
                     </label>
                 </div>
 
